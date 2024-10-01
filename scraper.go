@@ -81,6 +81,9 @@ func main() {
 		defer writer.Flush()
 	})
 
+
+	//
+
 	// open the target URL
 	c.Visit("https://www.ozon.ru/product/odeyalo-ikea-stjarnbracka-teploe-150x200-sm-1648654068/?avtc=1&avte=2&avts=1727299349")
 
