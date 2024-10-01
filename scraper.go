@@ -2,9 +2,8 @@ package main
 
 import (
 	"encoding/json"
+	"flag"
 	"fmt"
-	"log"
-	"os"
 	"strings"
 
 	"github.com/gocolly/colly"
@@ -15,11 +14,17 @@ type Product struct {
 }
 
 func main() {
+
+	link := flag.String("link", "", "a link")
+	flag.Parse()
+
+	fmt.Println(*link)
+
 	c := colly.NewCollector(
 		colly.AllowedDomains("www.ozon.ru"),
 	)
 
-	c.OnResponse(func(r *colly.Response) {
+	/* 	c.OnResponse(func(r *colly.Response) {
 		err := os.WriteFile("ozon_page.html", r.Body, 0644)
 
 		if err != nil {
@@ -27,7 +32,7 @@ func main() {
 		}
 
 		fmt.Println("HTML content saved to ozon_page.html")
-	})
+	}) */
 
 	c.OnHTML("[data-state]", func(e *colly.HTMLElement) {
 		var product Product
@@ -46,6 +51,5 @@ func main() {
 		}
 	})
 
-	c.Visit("https://www.ozon.ru/product/odeyalo-ikea-stjarnbracka-teploe-150x200-sm-1648654068/")
-
+	c.Visit(*link)
 }
