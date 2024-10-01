@@ -5,11 +5,11 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strings"
 
 	"github.com/gocolly/colly"
 )
 
-// initialize a data structure to keep the scraped data
 type Product struct {
 	Url, Name, Price string
 }
@@ -24,24 +24,34 @@ func main() {
 
 	// OnHTML callback
 	c.OnHTML("body", func(e *colly.HTMLElement) {
-
-		fmt.Print("Scraping: ", e)
+		// fmt.Print("Scraping: ", e)
 
 		// initialize a new Product instance
 		product := Product{}
 
+		// Find the price using a more general selector
+		e.ForEach("span", func(_ int, el *colly.HTMLElement) {
+			text := el.Text
+			if strings.Contains(text, "₽") && strings.Count(text, " ") <= 2 {
+				product.Price = strings.TrimSpace(strings.TrimSuffix(text, " ₽"))
+				return
+			}
+		})
+
 		// scrape the target data
 		product.Url = e.ChildAttr("a", "href")
 		product.Name = e.ChildText(".product-name")
-		product.Price = e.ChildText(".price")
 
 		// add the product instance with scraped data to the list of products
 		products = append(products, product)
-
 	})
 
 	// store the data to a CSV after extraction
 	c.OnScraped(func(r *colly.Response) {
+
+		fmt.Println("output", products)
+
+		return
 
 		// open the CSV file
 		file, err := os.Create("products.csv")
@@ -76,7 +86,6 @@ func main() {
 		}
 		defer writer.Flush()
 	})
-
 
 	// open the target URL
 	c.Visit("https://www.ozon.ru/product/odeyalo-ikea-stjarnbracka-teploe-150x200-sm-1648654068/?avtc=1&avte=2&avts=1727299349")
