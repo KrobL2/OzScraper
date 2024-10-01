@@ -11,12 +11,10 @@ import (
 
 // initialize a data structure to keep the scraped data
 type Product struct {
-	Url, Image, Name, Price string
+	Url, Name, Price string
 }
 
 func main() {
-
-	// instantiate a new collector object
 	c := colly.NewCollector(
 		colly.AllowedDomains("www.ozon.ru"),
 	)
@@ -34,7 +32,6 @@ func main() {
 
 		// scrape the target data
 		product.Url = e.ChildAttr("a", "href")
-		product.Image = e.ChildAttr("img", "src")
 		product.Name = e.ChildText(".product-name")
 		product.Price = e.ChildText(".price")
 
@@ -59,10 +56,10 @@ func main() {
 		// write the CSV headers
 		headers := []string{
 			"Url",
-			"Image",
 			"Name",
 			"Price",
 		}
+
 		writer.Write(headers)
 
 		// write each product as a CSV row
@@ -70,7 +67,6 @@ func main() {
 			// convert a Product to an array of strings
 			record := []string{
 				product.Url,
-				product.Image,
 				product.Name,
 				product.Price,
 			}
@@ -81,8 +77,6 @@ func main() {
 		defer writer.Flush()
 	})
 
-
-	// test
 
 	// open the target URL
 	c.Visit("https://www.ozon.ru/product/odeyalo-ikea-stjarnbracka-teploe-150x200-sm-1648654068/?avtc=1&avte=2&avts=1727299349")
