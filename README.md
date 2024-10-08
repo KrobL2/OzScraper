@@ -10,4 +10,14 @@
 останется без изменений.
 
 
+
+###   Как запустить
+
+1) Билд
+
+go build -o read-adviser-bot
+
+
+2) Запуск
+
 ./read-adviser-bot -tg-bot-token '6231102487:AAEJ_e0G9gKF9qbwyAjQ03ZiyJTtwoVAoMc'

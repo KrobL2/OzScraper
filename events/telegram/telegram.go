@@ -2,6 +2,7 @@ package telegram
 
 import (
 	"errors"
+	"log"
 
 	"read-adviser-bot/clients/telegram"
 	"read-adviser-bot/events"
@@ -57,7 +58,10 @@ func (p *Processor) Process(event events.Event) error {
 	switch event.Type {
 	case events.Message:
 		return p.processMessage(event)
+	case events.CallbackQuery:
+		return p.handleCallback(event.CallbackQuery)
 	default:
+		log.Printf("Unrecognized event type: %v", event.Type)
 		return e.Wrap("can't process message", ErrUnknownEventType)
 	}
 }
@@ -87,6 +91,9 @@ func meta(event events.Event) (Meta, error) {
 func event(upd telegram.Update) events.Event {
 	updType := fetchType(upd)
 
+	log.Printf("Received update: %+v", upd)
+	log.Printf("Determined event type: %v", updType)
+
 	res := events.Event{
 		Type: updType,
 		Text: fetchText(upd),
@@ -113,6 +120,10 @@ func fetchText(upd telegram.Update) string {
 func fetchType(upd telegram.Update) events.Type {
 	if upd.Message == nil {
 		return events.Unknown
+	}
+
+	if upd.CallbackQuery != nil {
+		return events.CallbackQuery
 	}
 
 	return events.Message

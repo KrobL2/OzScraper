@@ -23,6 +23,7 @@ func main() {
 	if err != nil {
 		log.Fatal("can't connect to storage: ", err)
 	}
+
 	if err := s.Init(context.TODO()); err != nil {
 		log.Fatal("can't init storage: ", err)
 	}

@@ -7,14 +7,16 @@ import (
 	"net/url"
 	"strings"
 
+	"read-adviser-bot/clients/telegram"
 	"read-adviser-bot/lib/e"
 	"read-adviser-bot/storage"
 )
 
 const (
-	RndCmd   = "/rnd"
-	HelpCmd  = "/help"
-	StartCmd = "/start"
+	RndCmd    = "/rnd"
+	HelpCmd   = "/help"
+	StartCmd  = "/start"
+	ButtonCmd = "/button"
 )
 
 func (p *Processor) doCmd(text string, chatID int, username string) error {
@@ -33,6 +35,9 @@ func (p *Processor) doCmd(text string, chatID int, username string) error {
 		return p.sendHelp(chatID)
 	case StartCmd:
 		return p.sendHello(chatID)
+	case ButtonCmd:
+		return p.sendButtonMessage(chatID)
+
 	default:
 		return p.tg.SendMessage(chatID, msgUnknownCommand)
 	}
@@ -50,6 +55,7 @@ func (p *Processor) savePage(chatID int, pageURL string, username string) (err e
 	if err != nil {
 		return err
 	}
+
 	if isExists {
 		return p.tg.SendMessage(chatID, msgAlreadyExists)
 	}
@@ -99,4 +105,28 @@ func isURL(text string) bool {
 	u, err := url.Parse(text)
 
 	return err == nil && u.Host != ""
+}
+
+func (p *Processor) sendButtonMessage(chatID int) error {
+	keyboard := &telegram.InlineKeyboardMarkup{
+		InlineKeyboard: [][]telegram.InlineKeyboardButton{
+			{
+				{
+					Text:         "Click me!",
+					CallbackData: "button_clicked",
+				},
+			},
+		},
+	}
+	return p.tg.SendMessageWithKeyboard(chatID, "Here's a button:", keyboard)
+}
+
+func (p *Processor) handleCallback(callbackQuery *telegram.CallbackQuery) error {
+	// Handle the callback data here
+	switch callbackQuery.Data {
+	case "button_clicked":
+		return p.tg.SendMessage(callbackQuery.Message.Chat.ID, "Button clicked!")
+	default:
+		return p.tg.SendMessage(callbackQuery.Message.Chat.ID, "Unknown callback")
+	}
 }
