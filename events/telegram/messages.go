@@ -16,7 +16,7 @@ const msgHello = "Привет! 👾\n\n" + msgHelp
 
 const (
 	msgUnknownCommand = "Спокойной ночи 😘"
-	msgNoSavedPages   = "You have no saved pages 🙊"
-	msgSaved          = "Saved! 👌"
-	msgAlreadyExists  = "You have already have this page in your list 🤗"
+	msgNoSavedPages   = "Вы не отслеживаете товары 🙊"
+	msgSaved          = "Сохранено! 👌"
+	msgAlreadyExists  = "Вы уже отслеживаете этот товар 🤗"
 )
