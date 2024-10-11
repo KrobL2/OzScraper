@@ -7,7 +7,9 @@ import (
 )
 
 func (p *Processor) savePage(chatID int, pageURL string, username string) (err error) {
-	defer func() { err = e.WrapIfErr("can't do command: save page", err) }()
+	defer func() {
+		err = e.WrapIfErr("can't do command: save page", err)
+	}()
 
 	page := &storage.Page{
 		URL:      pageURL,
