@@ -1,15 +1,10 @@
 package telegram
 
 import (
-	"context"
-	"errors"
 	"log"
-	"net/url"
 	"strings"
 
 	"read-adviser-bot/clients/telegram"
-	"read-adviser-bot/lib/e"
-	"read-adviser-bot/storage"
 )
 
 const (
@@ -24,7 +19,7 @@ func (p *Processor) doCmd(text string, chatID int, username string) error {
 
 	log.Printf("got new command '%s' from '%s", text, username)
 
-	if isAddCmd(text) {
+	if IsAddCmd(text) {
 		return p.savePage(chatID, text, username)
 	}
 
@@ -37,92 +32,12 @@ func (p *Processor) doCmd(text string, chatID int, username string) error {
 		return p.sendHello(chatID)
 	case ButtonCmd:
 		return p.sendButtonMessage(chatID)
-
 	default:
 		return p.tg.SendMessage(chatID, msgUnknownCommand)
 	}
 }
 
-func (p *Processor) savePage(chatID int, pageURL string, username string) (err error) {
-	defer func() { err = e.WrapIfErr("can't do command: save page", err) }()
-
-	page := &storage.Page{
-		URL:      pageURL,
-		UserName: username,
-	}
-
-	isExists, err := p.storage.IsExists(context.Background(), page)
-	if err != nil {
-		return err
-	}
-
-	if isExists {
-		return p.tg.SendMessage(chatID, msgAlreadyExists)
-	}
-
-	if err := p.storage.Save(context.Background(), page); err != nil {
-		return err
-	}
-
-	if err := p.tg.SendMessage(chatID, msgSaved); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (p *Processor) sendRandom(chatID int, username string) (err error) {
-	defer func() { err = e.WrapIfErr("can't do command: can't send random", err) }()
-
-	page, err := p.storage.PickRandom(context.Background(), username)
-	if err != nil && !errors.Is(err, storage.ErrNoSavedPages) {
-		return err
-	}
-	if errors.Is(err, storage.ErrNoSavedPages) {
-		return p.tg.SendMessage(chatID, msgNoSavedPages)
-	}
-
-	if err := p.tg.SendMessage(chatID, page.URL); err != nil {
-		return err
-	}
-
-	return p.storage.Remove(context.Background(), page)
-}
-
-func (p *Processor) sendHelp(chatID int) error {
-	return p.tg.SendMessage(chatID, msgHelp)
-}
-
-func (p *Processor) sendHello(chatID int) error {
-	return p.tg.SendMessage(chatID, msgHello)
-}
-
-func isAddCmd(text string) bool {
-	return isURL(text)
-}
-
-func isURL(text string) bool {
-	u, err := url.Parse(text)
-
-	return err == nil && u.Host != ""
-}
-
-func (p *Processor) sendButtonMessage(chatID int) error {
-	keyboard := &telegram.InlineKeyboardMarkup{
-		InlineKeyboard: [][]telegram.InlineKeyboardButton{
-			{
-				{
-					Text:         "Click me!",
-					CallbackData: "button_clicked",
-				},
-			},
-		},
-	}
-	return p.tg.SendMessageWithKeyboard(chatID, "Here's a button:", keyboard)
-}
-
 func (p *Processor) handleCallback(callbackQuery *telegram.CallbackQuery) error {
-	// Handle the callback data here
 	switch callbackQuery.Data {
 	case "button_clicked":
 		return p.tg.SendMessage(callbackQuery.Message.Chat.ID, "Button clicked!")
