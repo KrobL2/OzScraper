@@ -7,9 +7,9 @@ import (
 	"read-adviser-bot/storage"
 )
 
-// PickRandom picks random page from storage.
-func (s *Storage) PickRandom(ctx context.Context, userName string) (*storage.Page, error) {
-	q := `SELECT url FROM pages WHERE user_name = ? ORDER BY RANDOM() LIMIT 1`
+// GetAll pages from storage.
+func (s *Storage) GetAll(ctx context.Context, userName string) (*storage.Page, error) {
+	q := `SELECT * FROM pages`
 
 	var url string
 
@@ -19,7 +19,7 @@ func (s *Storage) PickRandom(ctx context.Context, userName string) (*storage.Pag
 	}
 
 	if err != nil {
-		return nil, fmt.Errorf("can't pick random page: %w", err)
+		return nil, fmt.Errorf("can't get pages: %w", err)
 	}
 
 	return &storage.Page{
