@@ -29,7 +29,9 @@ func (s Storage) Save(page *storage.Page) (err error) {
 		return err
 	}
 
-	defer func() { _ = file.Close() }()
+	defer func() {
+		_ = file.Close()
+	}()
 
 	if err := gob.NewEncoder(file).Encode(page); err != nil {
 		return err

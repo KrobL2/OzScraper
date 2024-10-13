@@ -12,7 +12,10 @@ func (s Storage) decodePage(filePath string) (*storage.Page, error) {
 	if err != nil {
 		return nil, e.Wrap("can't decode page", err)
 	}
-	defer func() { _ = f.Close() }()
+
+	defer func() {
+		_ = f.Close()
+	}()
 
 	var p storage.Page
 
