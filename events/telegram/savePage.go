@@ -2,8 +2,8 @@ package telegram
 
 import (
 	"context"
-	"read-adviser-bot/lib/e"
-	"read-adviser-bot/storage"
+	"scrappy/lib/e"
+	"scrappy/storage"
 )
 
 func (p *Processor) savePage(chatID int, pageURL string, username string) (err error) {

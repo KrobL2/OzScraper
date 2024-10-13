@@ -4,8 +4,8 @@ import (
 	"math/rand"
 	"os"
 	"path/filepath"
-	"read-adviser-bot/lib/e"
-	"read-adviser-bot/storage"
+	"scrappy/lib/e"
+	"scrappy/storage"
 	"time"
 )
 

@@ -3,7 +3,7 @@ package telegram
 import (
 	"encoding/json"
 	"net/url"
-	"read-adviser-bot/lib/e"
+	"scrappy/lib/e"
 	"strconv"
 )
 

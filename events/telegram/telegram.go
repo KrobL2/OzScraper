@@ -4,10 +4,10 @@ import (
 	"errors"
 	"log"
 
-	"read-adviser-bot/clients/telegram"
-	"read-adviser-bot/events"
-	"read-adviser-bot/lib/e"
-	"read-adviser-bot/storage"
+	"scrappy/clients/telegram"
+	"scrappy/events"
+	"scrappy/lib/e"
+	"scrappy/storage"
 )
 
 type Processor struct {

@@ -3,7 +3,7 @@ package sqlite
 import (
 	"context"
 	"fmt"
-	"read-adviser-bot/storage"
+	"scrappy/storage"
 )
 
 // GetAll pages from storage.

@@ -3,8 +3,8 @@ package telegram
 import (
 	"context"
 	"errors"
-	"read-adviser-bot/lib/e"
-	"read-adviser-bot/storage"
+	"scrappy/lib/e"
+	"scrappy/storage"
 )
 
 func (p *Processor) sendRandom(chatID int, username string) (err error) {

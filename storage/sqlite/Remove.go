@@ -3,7 +3,7 @@ package sqlite
 import (
 	"context"
 	"fmt"
-	"read-adviser-bot/storage"
+	"scrappy/storage"
 )
 
 // Remove removes page from storage.

@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"io"
 
-	"read-adviser-bot/lib/e"
+	"scrappy/lib/e"
 )
 
 type Storage interface {

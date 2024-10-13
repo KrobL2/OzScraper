@@ -1,4 +1,4 @@
-module read-adviser-bot
+module scrappy
 
 go 1.17
 

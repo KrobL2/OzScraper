@@ -1,7 +1,7 @@
 package telegram
 
 import (
-	"read-adviser-bot/clients/telegram"
+	"scrappy/clients/telegram"
 )
 
 func (p *Processor) sendButtonMessage(chatID int) error {

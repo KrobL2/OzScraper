@@ -1,6 +1,6 @@
 package events
 
-import "read-adviser-bot/clients/telegram"
+import "scrappy/clients/telegram"
 
 type Fetcher interface {
 	Fetch(limit int) ([]Event, error)

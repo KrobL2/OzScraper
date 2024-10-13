@@ -2,7 +2,7 @@ package telegram
 
 import (
 	"net/url"
-	"read-adviser-bot/lib/e"
+	"scrappy/lib/e"
 	"strconv"
 )
 

@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
-	"read-adviser-bot/lib/e"
-	"read-adviser-bot/storage"
+	"scrappy/lib/e"
+	"scrappy/storage"
 )
 
 func (s Storage) Remove(p *storage.Page) error {

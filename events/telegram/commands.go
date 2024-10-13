@@ -1,6 +1,6 @@
 package telegram
 
-import "read-adviser-bot/clients/telegram"
+import "scrappy/clients/telegram"
 
 const (
 	RndCmd    = "/rnd"

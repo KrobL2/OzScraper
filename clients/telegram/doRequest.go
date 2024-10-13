@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"net/url"
 	"path"
-	"read-adviser-bot/lib/e"
+	"scrappy/lib/e"
 )
 
 func (c *Client) doRequest(method string, query url.Values) (data []byte, err error) {

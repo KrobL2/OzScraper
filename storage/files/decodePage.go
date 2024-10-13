@@ -3,8 +3,8 @@ package files
 import (
 	"encoding/gob"
 	"os"
-	"read-adviser-bot/lib/e"
-	"read-adviser-bot/storage"
+	"scrappy/lib/e"
+	"scrappy/storage"
 )
 
 func (s Storage) decodePage(filePath string) (*storage.Page, error) {

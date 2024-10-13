@@ -21,9 +21,9 @@ go run . -link "https://www.ozon.ru/product/interaktivnyy-igrovoy-nabor-syurpriz
 
 1) Билд
 
-go build -o read-adviser-bot
+go build -o scrappy
 
 
 2) Запуск
 
-./read-adviser-bot -tg-bot-token '6231102487:AAEJ_e0G9gKF9qbwyAjQ03ZiyJTtwoVAoMc'
+./scrappy -tg-bot-token '6231102487:AAEJ_e0G9gKF9qbwyAjQ03ZiyJTtwoVAoMc'

@@ -1,6 +1,6 @@
 package files
 
-import "read-adviser-bot/storage"
+import "scrappy/storage"
 
 type Storage struct {
 	basePath string

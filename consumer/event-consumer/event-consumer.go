@@ -4,7 +4,7 @@ import (
 	"log"
 	"time"
 
-	"read-adviser-bot/events"
+	"scrappy/events"
 )
 
 type Consumer struct {

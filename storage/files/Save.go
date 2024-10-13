@@ -4,8 +4,8 @@ import (
 	"encoding/gob"
 	"os"
 	"path/filepath"
-	"read-adviser-bot/lib/e"
-	"read-adviser-bot/storage"
+	"scrappy/lib/e"
+	"scrappy/storage"
 )
 
 func (s Storage) Save(page *storage.Page) (err error) {

@@ -5,11 +5,11 @@ import (
 	"flag"
 	"log"
 
-	tgClient "read-adviser-bot/clients/telegram"
-	event_consumer "read-adviser-bot/consumer/event-consumer"
-	"read-adviser-bot/events/telegram"
-	"read-adviser-bot/internal/config"
-	"read-adviser-bot/storage/sqlite"
+	tgClient "scrappy/clients/telegram"
+	event_consumer "scrappy/consumer/event-consumer"
+	"scrappy/events/telegram"
+	"scrappy/internal/config"
+	"scrappy/storage/sqlite"
 )
 
 func main() {

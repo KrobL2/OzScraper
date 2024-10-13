@@ -4,7 +4,7 @@ import (
 	"context"
 	"database/sql"
 	"fmt"
-	"read-adviser-bot/storage"
+	"scrappy/storage"
 )
 
 // PickRandom picks random page from storage.

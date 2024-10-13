@@ -3,7 +3,7 @@ package sqlite
 import (
 	"context"
 	"fmt"
-	"read-adviser-bot/storage"
+	"scrappy/storage"
 )
 
 // IsExists checks if page exists in storage.
