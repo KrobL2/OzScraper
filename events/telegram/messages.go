@@ -8,14 +8,15 @@ In order to get a random page from your list, send me command /rnd.
 Caution! After that, this page will be removed from your list!
 
 Команды:
-	/rnd - тест
-	/rnd - тест
+	/help - тест
+	/start - тест
+	/all - тест
 `
 
 const msgHello = "Привет! 👾\n\n" + msgHelp
 
 const (
-	msgUnknownCommand = "Спокойной ночи 😘"
+	msgUnknownCommand = "Неизестная команда 😘"
 	msgNoSavedPages   = "Вы не отслеживаете товары 🙊"
 	msgSaved          = "Сохранено! 👌"
 	msgAlreadyExists  = "Вы уже отслеживаете этот товар 🤗"
