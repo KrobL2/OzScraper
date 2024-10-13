@@ -1,15 +1,26 @@
 package events
 
-type Event struct {
-	Type          EventType
-	Text          string
-	Meta          interface{}
-	CallbackQuery interface{}
+import "scrappy/pkg/telegram"
+
+type Fetcher interface {
+	Fetch(limit int) ([]Event, error)
 }
 
-type EventType int
+type Processor interface {
+	Process(e Event) error
+}
+
+type Type int
 
 const (
-	Message EventType = iota
-	CallbackQuery
+	Unknown Type = iota
+	Message
+	CallbackQuery = 2
 )
+
+type Event struct {
+	Type          Type
+	Text          string
+	Meta          interface{}
+	CallbackQuery *telegram.CallbackQuery
+}

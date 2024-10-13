@@ -2,9 +2,8 @@ package event_consumer
 
 import (
 	"log"
+	"scrappy/pkg/telegram/events"
 	"time"
-
-	"scrappy/events"
 )
 
 type Consumer struct {
