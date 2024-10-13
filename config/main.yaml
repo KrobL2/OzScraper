@@ -1,9 +1,0 @@
-# Bot configuration
-bot:
-  host: "api.telegram.org"
-  storage_path: "data/sqlite/storage.db"
-  batch_size: 100
-
-# TG_BOT_HOST
-# SQLLITE_STORAGE_PATH
-# BATCH_SIZE
