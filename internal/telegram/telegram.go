@@ -4,10 +4,9 @@ import (
 	"errors"
 	"log"
 
-	"scrappy/clients/telegram"
-	"scrappy/events"
 	"scrappy/internal/storage"
-	"scrappy/lib/e"
+	e "scrappy/pkg/errors"
+	"scrappy/pkg/telegram"
 )
 
 type Processor struct {

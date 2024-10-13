@@ -3,7 +3,7 @@ package telegram
 import (
 	"context"
 	"scrappy/internal/storage"
-	"scrappy/lib/e"
+	e "scrappy/pkg/errors"
 )
 
 func (p *Processor) savePage(chatID int, pageURL string, username string) (err error) {

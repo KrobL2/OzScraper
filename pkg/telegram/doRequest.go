@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"net/url"
 	"path"
-	"scrappy/lib/e"
+	e "scrappy/pkg/errors"
 )
 
 func (c *Client) doRequest(method string, query url.Values) (data []byte, err error) {
@@ -31,7 +31,9 @@ func (c *Client) doRequest(method string, query url.Values) (data []byte, err er
 		return nil, err
 	}
 
-	defer func() { _ = resp.Body.Close() }()
+	defer func() {
+		_ = resp.Body.Close()
+	}()
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {

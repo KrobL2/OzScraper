@@ -3,7 +3,7 @@ package telegram
 import (
 	"encoding/json"
 	"net/url"
-	"scrappy/lib/e"
+	e "scrappy/pkg/errors"
 	"strconv"
 )
 

@@ -4,8 +4,8 @@ import (
 	"encoding/gob"
 	"os"
 
-	"scrappy/lib/e"
-	"scrappy/storage"
+	"scrappy/internal/storage"
+	e "scrappy/pkg/errors"
 )
 
 func (s Storage) decodePage(filePath string) (*storage.Page, error) {

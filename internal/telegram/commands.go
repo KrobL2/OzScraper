@@ -1,6 +1,6 @@
 package telegram
 
-import "scrappy/clients/telegram"
+import "scrappy/pkg/telegram"
 
 const (
 	RndCmd    = "/rnd"

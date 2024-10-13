@@ -4,8 +4,8 @@ import (
 	"math/rand"
 	"os"
 	"path/filepath"
-	"scrappy/lib/e"
-	"scrappy/storage"
+	"scrappy/internal/storage"
+	e "scrappy/pkg/errors"
 	"time"
 )
 

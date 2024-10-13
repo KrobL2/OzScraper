@@ -1,6 +1,6 @@
 package files
 
-import "scrappy/storage"
+import "scrappy/internal/storage"
 
 type Storage struct {
 	basePath string

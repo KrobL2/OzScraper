@@ -1,8 +1,6 @@
 package telegram
 
-import (
-	"context"
-)
+import "context"
 
 func (p *Processor) sendAll(chatID int, username string) error {
 	pages, err := p.storage.GetAll(context.Background(), username)

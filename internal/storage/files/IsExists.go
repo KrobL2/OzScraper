@@ -6,8 +6,8 @@ import (
 	"os"
 	"path/filepath"
 
-	"scrappy/lib/e"
-	"scrappy/storage"
+	"scrappy/internal/storage"
+	e "scrappy/pkg/errors"
 )
 
 func (s Storage) IsExists(p *storage.Page) (bool, error) {

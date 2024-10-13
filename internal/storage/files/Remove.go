@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
-	"scrappy/lib/e"
-	"scrappy/storage"
+	"scrappy/internal/storage"
+	e "scrappy/pkg/errors"
 )
 
 func (s Storage) Remove(p *storage.Page) error {

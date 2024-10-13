@@ -4,7 +4,7 @@ import (
 	"context"
 	"errors"
 	"scrappy/internal/storage"
-	"scrappy/lib/e"
+	e "scrappy/pkg/errors"
 )
 
 func (p *Processor) sendRandom(chatID int, username string) (err error) {

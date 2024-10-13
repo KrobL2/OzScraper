@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"io"
 
-	"scrappy/pkg/errors/e"
+	e "scrappy/pkg/errors"
 )
 
 type Storage interface {
