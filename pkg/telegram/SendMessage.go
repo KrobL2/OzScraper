@@ -2,7 +2,7 @@ package telegram
 
 import (
 	"net/url"
-	"scrappy/lib/e"
+	"scrappy/pkg/errors/e"
 	"strconv"
 )
 
