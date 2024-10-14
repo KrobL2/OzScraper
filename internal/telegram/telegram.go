@@ -6,8 +6,8 @@ import (
 
 	"scrappy/internal/storage"
 	e "scrappy/pkg/errors"
-	"scrappy/pkg/telegram"
-	"scrappy/pkg/telegram/events"
+	"scrappy/pkg/events"
+	"scrappy/pkg/events/telegram"
 )
 
 type Processor struct {

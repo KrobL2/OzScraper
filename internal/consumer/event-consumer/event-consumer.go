@@ -2,7 +2,7 @@ package event_consumer
 
 import (
 	"log"
-	"scrappy/pkg/telegram/events"
+	"scrappy/pkg/events"
 	"time"
 )
 

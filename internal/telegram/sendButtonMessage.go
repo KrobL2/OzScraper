@@ -1,6 +1,6 @@
 package telegram
 
-import "scrappy/pkg/telegram"
+import "scrappy/pkg/events/telegram"
 
 func (p *Processor) sendButtonMessage(chatID int) error {
 	commands := []telegram.BotCommand{

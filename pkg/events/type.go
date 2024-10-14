@@ -1,6 +1,6 @@
 package events
 
-import "scrappy/pkg/telegram"
+import "scrappy/pkg/events/telegram"
 
 type Fetcher interface {
 	Fetch(limit int) ([]Event, error)
